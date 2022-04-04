@@ -38,7 +38,7 @@ object HyperdriveMultiblockClass3 : HyperdriveMultiblock() {
 				x(-1).diamondBlock()
 				x(+0).ironBlock()
 				x(+1).diamondBlock()
-				x(+2).ironblock()
+				x(+2).ironBlock()
 			}
 
 			for (y in 0..1) y(y) {
