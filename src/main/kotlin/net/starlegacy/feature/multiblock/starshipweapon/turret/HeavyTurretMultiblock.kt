@@ -8,6 +8,7 @@ import net.starlegacy.feature.starship.subsystem.weapon.primary.HeavyTurretWeapo
 import net.starlegacy.util.Vec3i
 import org.bukkit.Material.GRINDSTONE
 import org.bukkit.Material.IRON_TRAPDOOR
+import org.bukkit.Material.LIGHTNING_ROD
 import org.bukkit.block.BlockFace
 
 sealed class HeavyTurretMultiblock : TurretMultiblock() {
@@ -32,8 +33,11 @@ sealed class HeavyTurretMultiblock : TurretMultiblock() {
 		z(-2) {
 			y(getSign() * 3) {
 				x(-1).anyStairs()
-				x(+0).anyStairs()
+				x(+0).stainedTerracotta()
 				x(+1).anyStairs()
+			}
+			y(getSign() * 4) {
+				x(+0).anyStairs()
 			}
 		}
 		z(-1) {
@@ -42,9 +46,9 @@ sealed class HeavyTurretMultiblock : TurretMultiblock() {
 			}
 			y(getSign() * 3) {
 				x(-2).anyStairs()
-				x(-1).carbyne()
-				x(+0).carbyne()
-				x(+1).carbyne()
+				x(-1).stainedTerracotta()
+				x(+0).stainedTerracotta()
+				x(+1).stainedTerracotta()
 				x(+2).anyStairs()
 			}
 			y(getSign() * 4) {
@@ -59,16 +63,18 @@ sealed class HeavyTurretMultiblock : TurretMultiblock() {
 				x(+1).sponge()
 			}
 			y(getSign() * 3) {
-				x(-2).anyStairs()
+				x(-2).stainedTerracotta()
 				x(-1).stainedTerracotta()
-				x(+0).carbyne()
+				x(+0).stainedTerracotta()
 				x(+1).stainedTerracotta()
-				x(+2).anyStairs()
+				x(+2).stainedTerracotta()
 			}
 			y(getSign() * 4) {
+				x(-2).anySlab()
 				x(-1).type(GRINDSTONE)
-				x(+0).anyStairs()
+				x(+0).ironBlock()
 				x(+1).type(GRINDSTONE)
+				x(+*2).anySlab()
 			}
 		}
 		z(+1) {
@@ -78,21 +84,24 @@ sealed class HeavyTurretMultiblock : TurretMultiblock() {
 			y(getSign() * 3) {
 				x(-2).anyStairs()
 				x(-1).stainedTerracotta()
-				x(+0).carbyne()
+				x(+0).stainedTerracotta()
 				x(+1).stainedTerracotta()
 				x(+2).anyStairs()
 			}
 			y(getSign() * 4) {
-				x(-1).endRod()
-				x(+0).type(IRON_TRAPDOOR)
-				x(+1).endRod()
+				x(-1).type(LIGHTNING_ROD)
+				x(+0).anyStairs
+				x(+1).type(LIGHTNING_ROD)
 			}
 		}
 		z(+2) {
 			y(getSign() * 3) {
 				x(-1).anyStairs()
-				x(+0).anyStairs()
+				x(+0).stainedTerracotta()
 				x(+1).anyStairs()
+			}
+			y(getSign() * 4) {
+				x(+0).type(IRON_TRAPDOOR)
 			}
 		}
 	}
