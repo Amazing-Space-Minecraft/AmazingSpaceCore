@@ -133,7 +133,7 @@ sealed class TriTurretMultiblock : TurretMultiblock() {
 			z(+2) {
 				x(-2).type(LIGHTNING_ROD)
 				x(-1).type(IRON_TRAPDOOR)
-				x(+0).etype(LIGHTNING_ROD)
+				x(+0).type(LIGHTNING_ROD)
 				x(+1).type(IRON_TRAPDOOR)
 				x(+2).type(LIGHTNING_ROD)
 			}
