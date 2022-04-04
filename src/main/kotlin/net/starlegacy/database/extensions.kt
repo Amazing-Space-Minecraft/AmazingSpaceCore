@@ -140,7 +140,7 @@ class ProjectedResults(document: Document, vararg properties: KProperty<*>) {
 		}
 	}
 
-	inline operator fun <reified R> get(path: String): R {
+	inline operator fun <reified R> get(path: String): R? {
 		require(map.contains(path)) { "Property $path not in collection $map" }
 
 		val value: Any? = map[path]
@@ -166,7 +166,7 @@ class ProjectedResults(document: Document, vararg properties: KProperty<*>) {
 		}
 	}
 
-	inline operator fun <reified R> get(property: KProperty<R>): R = get(property.path())
+	inline operator fun <reified R> get(property: KProperty<R>): R? = get(property.path())
 
 	inline fun <reified I, reified R> convertProperty(path: String, convert: (I) -> R): R {
 		require(map.contains(path)) { "Property $path not in collection $map" }

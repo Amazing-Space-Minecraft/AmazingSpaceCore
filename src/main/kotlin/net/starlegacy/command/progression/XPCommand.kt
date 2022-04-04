@@ -30,7 +30,7 @@ object XPCommand : SLCommand() {
 
 		val name = SLPlayer.getName(playerID.slPlayerId) ?: fail { "Player not found" }
 
-		val (xp: Int?, level: Int?) = SLPlayer.getXPAndLevel(
+		val (xp: Int, level: Int) = SLPlayer.getXPAndLevel(
 			playerID.slPlayerId
 		) ?: throw ConditionFailedException("$name doesn't have any XP data.")
 
@@ -42,7 +42,7 @@ object XPCommand : SLCommand() {
 
 		response + when (level) {
 			maxLevel -> aqua(xp.toString()) + gray(" SLXP, at max level.")
-			else -> darkAqua("$xp") + aqua("/") + darkAqua(Levels.getLevelUpCost(level + 1).toString()) +
+			else -> darkAqua("$xp") + aqua("/") + darkAqua(Levels.getLevelUpCost(level!! + 1).toString()) +
 				gray(" SLXP, at level ") +
 				darkPurple("$level") + lightPurple("/") + darkPurple("$maxLevel")
 		}

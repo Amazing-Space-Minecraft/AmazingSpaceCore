@@ -95,8 +95,8 @@ data class SLPlayer(
 				id, SLPlayer::xp, SLPlayer::level
 			) ?: return null
 
-			val xp: Int = results[SLPlayer::xp]
-			val level: Int = results[SLPlayer::level]
+			val xp: Int = results[SLPlayer::xp]?: return null
+			val level: Int = results[SLPlayer::level]?: return null
 
 			return xp to level
 		}

@@ -55,8 +55,8 @@ object NationsMasterTasks {
 		val results: ProjectedResults = Settlement.findPropsById(settlementId, Settlement::name, Settlement::territory)
 			?: return
 
-		val name: String = results[Settlement::name]
-		val territoryId: Oid<Territory> = results[Settlement::territory]
+		val name: String = results[Settlement::name]!!
+		val territoryId: Oid<Territory> = results[Settlement::territory]!!
 		val territory: RegionTerritory = Regions[territoryId]
 
 		Settlement.delete(settlementId)
@@ -142,16 +142,16 @@ object NationsMasterTasks {
 		)
 
 		for (settlementResults: ProjectedResults in iterable) {
-			val settlementId: Oid<Settlement> = settlementResults[Settlement::_id]
+			val settlementId: Oid<Settlement> = settlementResults[Settlement::_id]!!
 			val cityState: Settlement.CityState = settlementResults[Settlement::cityState] ?: continue
 
 			val isActive = cityState == Settlement.CityState.ACTIVE
 
-			val money = settlementResults[Settlement::balance]
+			val money = settlementResults[Settlement::balance]!!
 			val tax = NATIONS_BALANCE.settlement.cityHourlyTax
 			var willBeActive: Boolean = money >= tax
 
-			val name = settlementResults[Settlement::name]
+			val name = settlementResults[Settlement::name]!!
 			val taxCredits = tax.toCreditsString()
 
 			if (willBeActive) {

@@ -318,7 +318,7 @@ internal object SettlementCommand : SLCommand() {
 
 		val lastSeenMap: Map<SLPlayerId, Date> = SLPlayer
 			.findProps(SLPlayer::settlement ne null, SLPlayer::_id, SLPlayer::lastSeen)
-			.associate { it[SLPlayer::_id] to it[SLPlayer::lastSeen] }
+			.associate { it[SLPlayer::_id]!! to it[SLPlayer::lastSeen]!! }
 
 		val activeMemberCounts: Map<Oid<Settlement>, Int> = settlementMembers.mapValues { (_, members) ->
 			members.count { lastSeenMap[it]?.let(::isActive) == true }
@@ -461,7 +461,7 @@ internal object SettlementCommand : SLCommand() {
 		val inactiveStyle = SLTextStyle.RED
 		val members: List<Triple<SLPlayerId, String, Date>> = SLPlayer
 			.findProps(SLPlayer::settlement eq settlementId, SLPlayer::lastKnownName, SLPlayer::lastSeen)
-			.map { Triple(it[SLPlayer::_id], it[SLPlayer::lastKnownName], it[SLPlayer::lastSeen]) }
+			.map { Triple(it[SLPlayer::_id]!!, it[SLPlayer::lastKnownName]!!, it[SLPlayer::lastSeen]!!) }
 			.sortedByDescending { it.third }
 
 		val names = mutableListOf<String>()

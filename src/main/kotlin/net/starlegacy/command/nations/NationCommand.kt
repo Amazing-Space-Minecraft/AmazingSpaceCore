@@ -86,7 +86,7 @@ internal object NationCommand : SLCommand() {
 
 		for (results in Nation.findProps(query, Nation::name, Nation::color)) {
 			val nationName = results[Nation::name]
-			val nationColor = Color.fromRGB(results[Nation::color])
+			val nationColor = Color.fromRGB(results[Nation::color]!!)
 
 			val r1 = color.red.toDouble()
 			val g1 = color.green.toDouble()
@@ -371,7 +371,7 @@ internal object NationCommand : SLCommand() {
 
 		val lastSeenMap: Map<SLPlayerId, Date> = SLPlayer
 			.findProps(SLPlayer::nation ne null, SLPlayer::_id, SLPlayer::lastSeen)
-			.associate { it[SLPlayer::_id] to it[SLPlayer::lastSeen] }
+			.associate { it[SLPlayer::_id]!! to it[SLPlayer::lastSeen]!! }
 
 		val activeMemberCounts: Map<Oid<Nation>, Int> = nationMembers.mapValues { (_, members) ->
 			members.count { lastSeenMap[it]?.let(::isActive) == true }
@@ -527,7 +527,7 @@ internal object NationCommand : SLCommand() {
 		val inactiveStyle = SLTextStyle.RED
 		val members: List<Triple<SLPlayerId, String, Date>> = SLPlayer
 			.findProps(SLPlayer::nation eq nationId, SLPlayer::lastKnownName, SLPlayer::lastSeen)
-			.map { Triple(it[SLPlayer::_id], it[SLPlayer::lastKnownName], it[SLPlayer::lastSeen]) }
+			.map { Triple(it[SLPlayer::_id]!!, it[SLPlayer::lastKnownName]!!, it[SLPlayer::lastSeen]!!) }
 			.sortedByDescending { it.third }
 
 		val names = mutableListOf<String>()
