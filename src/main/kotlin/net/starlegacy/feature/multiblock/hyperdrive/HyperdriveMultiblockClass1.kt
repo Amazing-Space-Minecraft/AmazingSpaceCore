@@ -37,7 +37,7 @@ object HyperdriveMultiblockClass1 : HyperdriveMultiblock() {
 
 			y(+0) {
 				x(-1).anyGlass()
-				x(+0).diamondBlock()
+				x(+0).sponge()
 				x(+1).anyGlass()
 			}
 		}
