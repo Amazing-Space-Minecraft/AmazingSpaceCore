@@ -35,7 +35,9 @@ sealed class TriTurretMultiblock : TurretMultiblock() {
 	override fun MultiblockShape.buildStructure() {
 		y(getYFactor() * 2) {
 			z(-1) {
+				x(-1).sponge()
 				x(+0).sponge()
+				x(+1).sponge()
 			}
 
 			z(+0) {
@@ -44,7 +46,9 @@ sealed class TriTurretMultiblock : TurretMultiblock() {
 			}
 
 			z(+1) {
+				x(-1).sponge()
 				x(+0).sponge()
+				x(+1).sponge()
 			}
 		}
 
@@ -56,44 +60,32 @@ sealed class TriTurretMultiblock : TurretMultiblock() {
 			}
 
 			z(-2) {
-				x(-2).ironBlock()
-				x(-1..+1) { concrete() }
-				x(+2).ironBlock()
+				x(-2..+2) { stainedTerracotta() }
 			}
 
 			z(-1) {
 				x(-3).anyStairs()
-				x(-2..+2) { concrete() }
+				x(-2..+2) { stainedTerracotta() }
 				x(+3).anyStairs()
 			}
 
 			z(+0) {
-				x(-3..-2) { stainedTerracotta() }
-				x(-1..+1) { concrete() }
-				x(+2..+3) { stainedTerracotta() }
+				x(-3..+3) { stainedTerracotta() }
 			}
 
 			z(+1) {
 				x(-3).anyStairs()
-				x(-2).stainedTerracotta()
-				x(-1).concrete()
-				x(+0).stainedTerracotta()
-				x(+1).concrete()
-				x(+2).stainedTerracotta()
+				x(-2..+2) { stainedTerracotta() }
 				x(+3).anyStairs()
 			}
 
 			z(+2) {
-				x(-2).ironBlock()
-				x(-1).concrete()
-				x(+0).stainedTerracotta()
-				x(+1).concrete()
-				x(+2).stainedGlass()
+				x(-2..+2) { stainedTerracotta() }
 			}
 
 			z(+3) {
 				x(-1).anyStairs()
-				x(+0).anyStairs()
+				x(+0).stainedTerracotta()
 				x(+1).anyStairs()
 			}
 		}
@@ -104,49 +96,49 @@ sealed class TriTurretMultiblock : TurretMultiblock() {
 			}
 
 			z(-2) {
-				x(-2).anySlab()
+				x(-2).type(IRON_TRAPDOOR)
 				x(-1).anyStairs()
-				x(+0).stainedTerracotta()
+				x(+0).ironBlock()
 				x(+1).anyStairs()
-				x(+2).anySlab()
+				x(+2).type(IRON_TRAPDOOR)
 			}
 
 			z(-1) {
-				x(-2).stainedTerracotta()
-				x(-1).stainedTerracotta()
-				x(+0).stainedTerracotta()
-				x(+1).stainedTerracotta()
-				x(+2).stainedTerracotta()
+				x(-2).anyStairs()
+				x(-1).ironBlock()
+				x(+0).ironBlock()
+				x(+1).ironBlock()
+				x(+2).anyStairs()
 			}
 
 			z(+0) {
-				x(-3).anyStairs()
+				x(-3).anySlab()
 				x(-2).type(GRINDSTONE)
 				x(-1).anyStairs()
-				x(+0).stainedTerracotta()
+				x(+0).ironBlock()
 				x(+1).anyStairs()
 				x(+2).type(GRINDSTONE)
-				x(+3).anyStairs()
+				x(+3).anySlab()
 			}
 
 			z(+1) {
-				x(-2).endRod()
-				x(-1).type(IRON_TRAPDOOR)
+				x(-2).type(LIGHTNING_ROD)
+				x(-1).anySlab()
 				x(+0).type(GRINDSTONE)
-				x(+1).type(IRON_TRAPDOOR)
-				x(+2).endRod()
+				x(+1).anySlab()
+				x(+2).type(LIGHTNING_ROD)
 			}
 
 			z(+2) {
-				x(-2).endRod()
+				x(-2).type(LIGHTNING_ROD)
 				x(-1).type(IRON_TRAPDOOR)
-				x(+0).endRod()
+				x(+0).etype(LIGHTNING_ROD)
 				x(+1).type(IRON_TRAPDOOR)
-				x(+2).endRod()
+				x(+2).type(LIGHTNING_ROD)
 			}
 
 			z(+3) {
-				x(+0).endRod()
+				x(+0).type(LIGHTNING_ROD)
 			}
 		}
 	}
