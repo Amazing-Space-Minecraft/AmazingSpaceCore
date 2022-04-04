@@ -17,7 +17,7 @@ object NavigationComputerMultiblockAdvanced : NavigationComputerMultiblock() {
 			y(+0) {
 				x(-2).anyStairs()
 				x(-1).anyStairs()
-				x(+0).ironBlock()
+				x(+0).wireInputComputer()
 				x(+1).anyStairs()
 				x(+2).anyStairs()
 			}
