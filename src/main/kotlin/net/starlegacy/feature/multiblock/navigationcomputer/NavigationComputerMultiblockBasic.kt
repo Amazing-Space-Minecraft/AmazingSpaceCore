@@ -16,7 +16,7 @@ object NavigationComputerMultiblockBasic : NavigationComputerMultiblock() {
 		z(+0) {
 			y(+0) {
 				x(-1).anyStairs()
-				x(+0).diamondBlock()
+				x(+0).wireInputComputer()
 				x(+1).anyStairs()
 			}
 
@@ -30,13 +30,13 @@ object NavigationComputerMultiblockBasic : NavigationComputerMultiblock() {
 		z(+1) {
 			y(+0) {
 				x(-1).ironBlock()
-				x(+0).diamondBlock()
+				x(+0).sponge()
 				x(+1).ironBlock()
 			}
 
 			y(+1) {
 				x(-1).anyGlassPane()
-				x(+0).sponge()
+				x(+0).diamondBlock()
 				x(+1).anyGlassPane()
 			}
 		}
