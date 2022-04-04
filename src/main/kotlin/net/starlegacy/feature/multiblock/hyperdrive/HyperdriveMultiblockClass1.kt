@@ -24,15 +24,28 @@ object HyperdriveMultiblockClass1 : HyperdriveMultiblock() {
 			}
 
 			y(+0) {
-				x(-1).anyGlass()
+				x(-1).anyGlassPane()
 				x(+0).sponge()
+				x(+1).anyGlassPane()
+			}
+		}
+
+		z(+1) {
+			y(-1) {
+				x(+0).diamondBlock()
+			}
+
+			y(+0) {
+				x(-1).anyGlass()
+				x(+0).diamondBlock()
 				x(+1).anyGlass()
 			}
 		}
 	}
 
+
 	override fun buildHopperOffsets() = listOf(
-		Vec3i(x = -1, y = -1, z = +0),    // left hopper
-		Vec3i(x = +1, y = -1, z = +0)     // right hopper
+		Vec3i(x = -1, y = -1, z = +1),    // left hopper
+		Vec3i(x = +1, y = -1, z = +1)     // right hopper
 	)
 }
