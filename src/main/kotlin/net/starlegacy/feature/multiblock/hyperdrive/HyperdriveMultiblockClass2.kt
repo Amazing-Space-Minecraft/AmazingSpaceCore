@@ -8,7 +8,7 @@ object HyperdriveMultiblockClass2 : HyperdriveMultiblock() {
 
 	override val signText = createSignText(
 		line1 = "&7Class",
-		line2 = "&12",
+		line2 = "&2",
 		line3 = "&bHyperdrive",
 		line4 = null
 	)
