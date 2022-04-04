@@ -74,7 +74,7 @@ sealed class HeavyTurretMultiblock : TurretMultiblock() {
 				x(-1).type(GRINDSTONE)
 				x(+0).ironBlock()
 				x(+1).type(GRINDSTONE)
-				x(+*2).anySlab()
+				x(+2).anySlab()
 			}
 		}
 		z(+1) {
@@ -90,7 +90,7 @@ sealed class HeavyTurretMultiblock : TurretMultiblock() {
 			}
 			y(getSign() * 4) {
 				x(-1).type(LIGHTNING_ROD)
-				x(+0).anyStairs
+				x(+0).anyStairs()
 				x(+1).type(LIGHTNING_ROD)
 			}
 		}
