@@ -8,6 +8,7 @@ import net.starlegacy.feature.starship.subsystem.weapon.secondary.TriTurretWeapo
 import net.starlegacy.util.Vec3i
 import org.bukkit.Material.GRINDSTONE
 import org.bukkit.Material.IRON_TRAPDOOR
+import org.bukkit.Material.LIGHTNING_ROD
 import org.bukkit.block.BlockFace
 
 sealed class TriTurretMultiblock : TurretMultiblock() {
