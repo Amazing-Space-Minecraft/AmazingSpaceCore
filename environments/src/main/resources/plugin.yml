@@ -1,0 +1,5 @@
+name: Environments
+version: 1.1
+main: net.starlegacy.environments.Environments
+depend: [StarLegacy]
+api-version: "1.18"
