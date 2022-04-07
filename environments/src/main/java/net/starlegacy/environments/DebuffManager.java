@@ -92,6 +92,7 @@ class DebuffManager {
 
                 if (Environments.isRadioactive(world)) {
                     if (wearingSuit) {
+			    player.playSound(player.getLocation(), environment.click5, 0.5f, 0.5f);
                         if (Math.random() < 0.1) {
                             for (ItemStack i : player.getInventory().getArmorContents()) {
                                 if (i != null && i.getType().name().contains("CHAIN")) {
@@ -101,13 +102,8 @@ class DebuffManager {
                         }
                     } else {
                         player.damage(1);
+			player.playSound(player.getLocation(), Sound.ENTITY_SNOW_GOLEM_HURT, 0.5f, 0.5f);
                     }
-
-					if (wearingSuit) {
-						player.playSound(player.getLocation(), environment.click5, 0.5f, 0.5f);
-					} else {
-						player.playSound(player.getLocation(), Sound.ENTITY_SNOW_GOLEM_HURT, 0.5f, 0.5f);
-					}
                 }
 
                 double gravity = Environments.getGravity(world);
