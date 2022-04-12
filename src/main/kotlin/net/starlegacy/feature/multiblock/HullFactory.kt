@@ -1,4 +1,4 @@
-package net.starlegacy.feature.multiblock.printer
+package net.starlegacy.feature.multiblock.hullfactory
 
 import net.starlegacy.feature.machine.PowerMachines
 import net.starlegacy.feature.multiblock.FurnaceMultiblock
@@ -16,14 +16,23 @@ import org.bukkit.inventory.ItemStack
 
     override val signText = createSignText(
         line1 = "Hull Factory",
-        line2 = "&4-------------",
+        line2 = "&8-------------",
         line3 = null,
         line4 = "Chromatic Inc"
     )
 
     override val maxPower: Int = 50_000
     abstract fun getOutput(product: Material): ItemStack
-    
+
+    protected abstract fun MultiblockShape.RequirementBuilder.hullfactoryProductBlock()
+    override fun MultiblockShape.RequirementBuilder.hullfactoryProductBlock() = hullBlock()
+    hullBlock = (type(
+        STONE_BRICKS,MOSSY_STONE_BRICKS,QUARTZ_BLOCK,SMOOTH_QUARTZ,NETHER_BRICK,RED_NETHER_BRICKS,BLACKSTONE,POLISHED_BLACKSTONE,POLISHED_BLACKSTONE_BRICKS,
+        ANDESITE,POLISHED_ANDESITE,DIORITE,POLISHED_DIORITE,GRANITE,POLISHED_GRANITE,PRISMARINE,PRISMARINE_BRICKS,DARK_PRISMARINE,
+        SANDSTONE,SMOOTH_SANDSTONE,RED_SANDSTONE,SMOOTH_RED_SANDSTONE,COBBLED_DEEPSLATE,POLISHED_DEEPSLATE,DEEPSLATE_BRICKS,DEEPSLATE_TILES,SMOOTH_STONE,
+        COBBLESTONE,MOSSY_COBBLESTONE,BRICKS,END_STONE_BRICKS,PURPUR_BLOCK
+    ))
+
     override fun MultiblockShape.buildStructure() {
         z(+0) {
             y(-1) {
@@ -38,7 +47,7 @@ import org.bukkit.inventory.ItemStack
                 x(+1).anyGlassPane()
             }
         }
-
+ 
         z(+1) {
             y(-1) {
                 x(-1).ironBlock()
@@ -62,7 +71,7 @@ import org.bukkit.inventory.ItemStack
 
             y(+0) {
                 x(-1).anyGlass()
-                x(+0). // **ANY** "hull block", remember to add a thing up above so that it knows what a "hull block" is!
+                x(+0).hullfactoryProductBlock()
                 x(+1).anyGlass()
             }
         }
