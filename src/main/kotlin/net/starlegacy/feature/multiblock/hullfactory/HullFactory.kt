@@ -19,3 +19,4 @@ import org.bukkit.inventory.ItemStack
 		line2 = "&4-------------",
 		line3 = null,
 		line4 = "Chromatic Inc"
+	)
