@@ -11,3 +11,11 @@ import org.bukkit.block.Sign
 import org.bukkit.event.inventory.FurnaceBurnEvent
 import org.bukkit.inventory.InventoryHolder
 import org.bukkit.inventory.ItemStack
+
+	override val name = "hullfactory"
+
+	override val signText = createSignText(
+		line1 = "Hull Factory",
+		line2 = "&4-------------",
+		line3 = null,
+		line4 = "Chromatic Inc"
