@@ -89,6 +89,10 @@ abstract class ActiveStarship(
 	val weaponSetSelections: HashBiMap<UUID, String> = HashBiMap.create()
 	val autoTurretTargets = mutableMapOf<String, UUID>()
 
+	val curPower: Int = 0; // ToDo: expand out
+	val maxPower: Int = 0;
+
+
 	val shieldEfficiency: Double
 		get() = (shields.size.d().pow(0.9) / (blockCount / 500.0).coerceAtLeast(1.0).pow(0.7))
 			.coerceAtMost(1.0)
