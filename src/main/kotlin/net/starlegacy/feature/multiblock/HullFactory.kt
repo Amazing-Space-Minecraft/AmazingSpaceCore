@@ -144,4 +144,3 @@ import org.bukkit.inventory.ItemStack
 		fuel.amount = fuel.amount - 1
 		PowerMachines.removePower(sign, 250)
     }
-}
