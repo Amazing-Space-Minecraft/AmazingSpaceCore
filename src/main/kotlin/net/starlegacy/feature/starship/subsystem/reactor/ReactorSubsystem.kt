@@ -7,9 +7,7 @@ import net.starlegacy.feature.starship.active.ActiveStarship
 import net.starlegacy.feature.starship.subsystem.StarshipSubsystem
 import net.starlegacy.feature.starship.subsystem.shield.StarshipShields
 
-class ReactorSubsystem(
-	starship: ActiveStarship
-) : StarshipSubsystem(starship, starship.centerOfMass) {
+class ReactorSubsystem(starship: ActiveStarship) : StarshipSubsystem(starship, starship.centerOfMass) {
 	val output: Double =
 		Math.cbrt(starship.blockCount.coerceAtLeast(500).toDouble()) * 3000.0 * (if (starship.type.isWarship) 1.0 else 0.7)
 	val powerDistributor = PowerDistributor()
