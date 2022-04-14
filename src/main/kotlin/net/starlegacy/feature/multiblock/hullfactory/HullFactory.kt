@@ -108,7 +108,7 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
             y(+0) {
                 x(-1).anyGlassPane()
                 x(+0).anyPipedInventory()
-                X(+1).anyGlassPane()
+                x(+1).anyGlassPane()
             }
         }
     }
