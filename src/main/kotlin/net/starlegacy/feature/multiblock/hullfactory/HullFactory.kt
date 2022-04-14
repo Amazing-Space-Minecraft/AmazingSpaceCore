@@ -5,14 +5,19 @@ import net.starlegacy.feature.multiblock.FurnaceMultiblock
 import net.starlegacy.feature.multiblock.Multiblock
 import net.starlegacy.feature.multiblock.MultiblockShape
 import net.starlegacy.feature.multiblock.PowerStoringMultiblock
+import net.starlegacy.util.LegacyItemUtils
 import net.starlegacy.util.getFacing
 import org.bukkit.Material
+import org.bukkit.Material.*
 import org.bukkit.block.Furnace
 import org.bukkit.block.Sign
 import org.bukkit.event.inventory.FurnaceBurnEvent
 import org.bukkit.inventory.InventoryHolder
 import org.bukkit.inventory.ItemStack
-abstract class HullFactory: Multiblock() {
+
+
+
+abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
     override val name = "hullfactory"
 
     override val signText = createSignText(
@@ -25,14 +30,16 @@ abstract class HullFactory: Multiblock() {
     override val maxPower: Int = 50_000
     abstract fun getOutput(product: Material): ItemStack
 
-    protected abstract fun MultiblockShape.RequirementBuilder.hullfactoryProductBlock()
-    override fun MultiblockShape.RequirementBuilder.hullfactoryProductBlock() = hullBlock()
-    hullBlock = (type(
-        STONE_BRICKS,MOSSY_STONE_BRICKS,QUARTZ_BLOCK,SMOOTH_QUARTZ,NETHER_BRICK,RED_NETHER_BRICKS,BLACKSTONE,POLISHED_BLACKSTONE,POLISHED_BLACKSTONE_BRICKS,
-        ANDESITE,POLISHED_ANDESITE,DIORITE,POLISHED_DIORITE,GRANITE,POLISHED_GRANITE,PRISMARINE,PRISMARINE_BRICKS,DARK_PRISMARINE,
-        SANDSTONE,SMOOTH_SANDSTONE,RED_SANDSTONE,SMOOTH_RED_SANDSTONE,COBBLED_DEEPSLATE,POLISHED_DEEPSLATE,DEEPSLATE_BRICKS,DEEPSLATE_TILES,SMOOTH_STONE,
-        COBBLESTONE,MOSSY_COBBLESTONE,BRICKS,END_STONE_BRICKS,PURPUR_BLOCK
-    ))
+	const hullBlock = (type(
+	STONE_BRICKS,MOSSY_STONE_BRICKS,QUARTZ_BLOCK,SMOOTH_QUARTZ,NETHER_BRICK,RED_NETHER_BRICKS,BLACKSTONE,POLISHED_BLACKSTONE,POLISHED_BLACKSTONE_BRICKS,
+	ANDESITE,POLISHED_ANDESITE,DIORITE,POLISHED_DIORITE,GRANITE,POLISHED_GRANITE,PRISMARINE,PRISMARINE_BRICKS,DARK_PRISMARINE,
+	SANDSTONE,SMOOTH_SANDSTONE,RED_SANDSTONE,SMOOTH_RED_SANDSTONE,COBBLED_DEEPSLATE,POLISHED_DEEPSLATE,DEEPSLATE_BRICKS,DEEPSLATE_TILES,SMOOTH_STONE,
+	COBBLESTONE,MOSSY_COBBLESTONE,BRICKS,END_STONE_BRICKS,PURPUR_BLOCK
+	))
+
+    fun MultiblockShape.RequirementBuilder.hullfactoryProductBlock() = hullBlock()// consts
+
+
 
     override fun MultiblockShape.buildStructure() {
         z(+0) {
@@ -58,7 +65,7 @@ abstract class HullFactory: Multiblock() {
 
             y(+0) {
                 x(-1).anyGlass()
-                x(+0).type(GRINDSTONE)
+                x(+0).type(STONECUTTER)
                 x(+1).anyGlass()
             }
         }
@@ -117,9 +124,9 @@ abstract class HullFactory: Multiblock() {
 
         if (PowerMachines.getPower(sign) == 0
 			|| smelting == null
-			|| smelting.type != Material.PRISMARINE_CRYSTALS
+			|| smelting.type != PRISMARINE_CRYSTALS
 			|| fuel == null
-			|| fuel.type != Material.STONE // CHANGED FROM COBBLESTONE TO NORMAL STONE, if it doesnt work this might be why. Change it back to cobblestone if it doesnt work and check if it still doesnt work
+			|| fuel.type != STONE // CHANGED FROM COBBLESTONE TO NORMAL STONE, if it doesnt work this might be why. Change it back to cobblestone if it doesnt work and check if it still doesnt work
 		) return
 
         event.isBurning = false
@@ -145,3 +152,4 @@ abstract class HullFactory: Multiblock() {
 		fuel.amount = fuel.amount - 1
 		PowerMachines.removePower(sign, 250)
     }
+}
