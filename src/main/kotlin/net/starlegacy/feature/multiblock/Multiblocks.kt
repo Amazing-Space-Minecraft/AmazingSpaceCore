@@ -26,7 +26,7 @@ import net.starlegacy.feature.multiblock.generator.GeneratorMultiblockTier2
 import net.starlegacy.feature.multiblock.generator.GeneratorMultiblockTier3
 import net.starlegacy.feature.multiblock.gravitywell.AmplifiedGravityWellMultiblock
 import net.starlegacy.feature.multiblock.gravitywell.StandardGravityWellMultiblock
-import net.starlegacy.feature.multiblock.hullfactory
+import net.starlegacy.feature.multiblock.hullfactory.HullFactory
 import net.starlegacy.feature.multiblock.hyperdrive.HyperdriveMultiblockClass1
 import net.starlegacy.feature.multiblock.hyperdrive.HyperdriveMultiblockClass2
 import net.starlegacy.feature.multiblock.hyperdrive.HyperdriveMultiblockClass3
@@ -191,7 +191,7 @@ object Multiblocks : SLComponent() {
 			PhaserStarshipWeaponMultiblock,
 			DecomposerMultiblock,
 
-			HullFactory,
+			HullFactory
 		)
 	}
 
