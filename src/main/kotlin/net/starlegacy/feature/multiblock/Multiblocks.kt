@@ -191,7 +191,7 @@ object Multiblocks : SLComponent() {
 			PhaserStarshipWeaponMultiblock,
 			DecomposerMultiblock,
 
-			HullFactory
+			HullFactory,
 		)
 	}
 
