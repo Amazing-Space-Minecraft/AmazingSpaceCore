@@ -120,13 +120,13 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
     ) {
         event.isCancelled = true
 		val smelting = furnace.inventory.smelting
-		val fuel = furnace.inventory.fuel
+		val fuel = furnace.inventory.fuel // contains the item to transform
 
         if (PowerMachines.getPower(sign) == 0
 			|| smelting == null
 			|| smelting.type != PRISMARINE_CRYSTALS
 			|| fuel == null
-			|| fuel.type != STONE // CHANGED FROM COBBLESTONE TO NORMAL STONE, if it doesnt work this might be why. Change it back to cobblestone if it doesnt work and check if it still doesnt work
+			|| !hullBlock.contains(fuel.type) // Changed to allow any transform
 		) return
 
         event.isBurning = false
@@ -144,11 +144,11 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
         val output = getOutput(product)
 
         val inventory = state.inventory
-		if (!LegacyItemUtils.canFit(inventory, output)) {
-			return
-		}
+		if (!LegacyItemUtils.canFit(inventory, output)) { return}
 
         LegacyItemUtils.addToInventory(inventory, output)
+		// subtract 1 item from input pipe
+
 		fuel.amount = fuel.amount - 1
 		PowerMachines.removePower(sign, DrainAmount)
     }
