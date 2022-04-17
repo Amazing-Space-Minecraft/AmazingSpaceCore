@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack
 
 
 abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
-    override val name = "hullfactory"
+	override val name = "hullfactory"
 
     override val signText = createSignText(
         line1 = "Hull Factory",
