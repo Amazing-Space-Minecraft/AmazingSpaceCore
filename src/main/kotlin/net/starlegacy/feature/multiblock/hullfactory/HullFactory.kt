@@ -5,6 +5,7 @@ import net.starlegacy.feature.multiblock.FurnaceMultiblock
 import net.starlegacy.feature.multiblock.Multiblock
 import net.starlegacy.feature.multiblock.MultiblockShape
 import net.starlegacy.feature.multiblock.PowerStoringMultiblock
+import net.starlegacy.feature.multiblock.generator.GeneratorMultiblock
 import net.starlegacy.util.LegacyItemUtils
 import net.starlegacy.util.getFacing
 import org.bukkit.Material
@@ -149,4 +150,11 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
 		fuel.amount = fuel.amount - 1
 		PowerMachines.removePower(sign, 250)
     }
+}
+
+object HullFactoryTier1 : HullFactory() {
+	override val maxPower = 100_000
+	override fun getOutput(product: Material): ItemStack {
+		TODO("Not yet implemented")
+	}
 }
