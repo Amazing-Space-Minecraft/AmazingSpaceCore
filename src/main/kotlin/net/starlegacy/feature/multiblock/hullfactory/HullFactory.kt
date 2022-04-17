@@ -21,16 +21,16 @@ import org.bukkit.inventory.ItemStack
 abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
 	override val name = "hullfactory"
 
+	val DrainAmount = 250
+
     override val signText = createSignText(
         line1 = "Hull Factory",
         line2 = "&8-------------",
         line3 = null,
         line4 = "Chromatic Inc"
     )
-
-    override val maxPower: Int = 50_000
     fun getOutput(product: Material): ItemStack{
-		TODO("Not implemented yet")
+		return ItemStack(product,1)// sus
 	}
 	private val hullBlock = setOf<Material>(STONE_BRICKS, MOSSY_STONE_BRICKS, QUARTZ_BLOCK, SMOOTH_QUARTZ,NETHER_BRICK,RED_NETHER_BRICKS,BLACKSTONE,POLISHED_BLACKSTONE,POLISHED_BLACKSTONE_BRICKS,
 		ANDESITE,POLISHED_ANDESITE,DIORITE,POLISHED_DIORITE,GRANITE,POLISHED_GRANITE,PRISMARINE,PRISMARINE_BRICKS,DARK_PRISMARINE,
@@ -150,10 +150,10 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
 
         LegacyItemUtils.addToInventory(inventory, output)
 		fuel.amount = fuel.amount - 1
-		PowerMachines.removePower(sign, 250)
+		PowerMachines.removePower(sign, DrainAmount)
     }
 }
 
 object HullFactoryTier1 : HullFactory() {
-	override val maxPower = 100_000
+	override val maxPower = 50_000
 }
