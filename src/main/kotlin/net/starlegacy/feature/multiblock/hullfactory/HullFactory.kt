@@ -29,7 +29,9 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
     )
 
     override val maxPower: Int = 50_000
-    abstract fun getOutput(product: Material): ItemStack
+    fun getOutput(product: Material): ItemStack{
+		TODO("Not implemented yet")
+	}
 	private val hullBlock = setOf<Material>(STONE_BRICKS, MOSSY_STONE_BRICKS, QUARTZ_BLOCK, SMOOTH_QUARTZ,NETHER_BRICK,RED_NETHER_BRICKS,BLACKSTONE,POLISHED_BLACKSTONE,POLISHED_BLACKSTONE_BRICKS,
 		ANDESITE,POLISHED_ANDESITE,DIORITE,POLISHED_DIORITE,GRANITE,POLISHED_GRANITE,PRISMARINE,PRISMARINE_BRICKS,DARK_PRISMARINE,
 		SANDSTONE,SMOOTH_SANDSTONE,RED_SANDSTONE,SMOOTH_RED_SANDSTONE,COBBLED_DEEPSLATE,POLISHED_DEEPSLATE,DEEPSLATE_BRICKS,DEEPSLATE_TILES,SMOOTH_STONE,
@@ -154,7 +156,4 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
 
 object HullFactoryTier1 : HullFactory() {
 	override val maxPower = 100_000
-	override fun getOutput(product: Material): ItemStack {
-		TODO("Not yet implemented")
-	}
 }
