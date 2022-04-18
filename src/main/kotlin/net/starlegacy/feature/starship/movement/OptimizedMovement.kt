@@ -142,6 +142,8 @@ object OptimizedMovement {
 
 					if (!passThroughBlocks.contains(blockData)) {
 						if (!isHangar(blockData)) {
+							System.err.print(passThroughBlocks.toString())
+							Exception().printStackTrace()
 							throw ConditionFailedException("Blocked at $x, $y, $z by `$blockData`!")
 						}
 
