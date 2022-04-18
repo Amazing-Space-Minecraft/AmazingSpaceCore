@@ -140,7 +140,7 @@ object OptimizedMovement {
 
 					val blockData = section.getBlockState(localX, localY, localZ)
 
-					if (!passThroughBlocks.contains(blockData)) {
+					if (!passThroughBlocks.contains(blockData)) { //ToDo: check state sectionMap
 						if (!isHangar(blockData)) {
 							System.err.print(passThroughBlocks.toString())
 							Exception().printStackTrace()
