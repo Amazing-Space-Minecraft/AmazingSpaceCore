@@ -89,6 +89,7 @@ object OptimizedMovement {
 						%s
 					""".trimIndent().format(world2, collisionChunkMap, hangars, newPositionArray))
 					Exception().printStackTrace()
+
 					checkForCollision(world2, collisionChunkMap, hangars, newPositionArray) // todo:
 
 					processOldBlocks(
