@@ -71,7 +71,7 @@ object OptimizedMovement {
 		val collisionChunkMap = getCollisionChunkMap(oldChunkMap, newChunkMap)
 
 		val n = oldPositionArray.size
-		val capturedStates = java.lang.reflect.Array.newInstance(NMSBlockState::class.java, n) as Array<NMSBlockState>
+		val capturedStates = java.lang.reflect.Array.newInstance(NMSBlockState::class.java, n) as Array<NMSBlockState> // sussy cast
 		val capturedTiles = mutableMapOf<Int, NMSBlockEntity>()
 		val hangars = LinkedList<Long>()
 
@@ -82,7 +82,14 @@ object OptimizedMovement {
 				}
 
 				timing.time {
-					checkForCollision(world2, collisionChunkMap, hangars, newPositionArray)
+					System.err.print("""
+						%s
+						%s
+						%s
+						%s
+					""".trimIndent().format(world2, collisionChunkMap, hangars, newPositionArray))
+					Exception().printStackTrace()
+					checkForCollision(world2, collisionChunkMap, hangars, newPositionArray) // todo:
 
 					processOldBlocks(
 						oldChunkMap,
@@ -142,8 +149,6 @@ object OptimizedMovement {
 
 					if (!passThroughBlocks.contains(blockData)) { //ToDo: check state sectionMap
 						if (!isHangar(blockData)) {
-							System.err.print(passThroughBlocks.toString())
-							Exception().printStackTrace()
 							throw ConditionFailedException("Blocked at $x, $y, $z by `$blockData`!")
 						}
 
