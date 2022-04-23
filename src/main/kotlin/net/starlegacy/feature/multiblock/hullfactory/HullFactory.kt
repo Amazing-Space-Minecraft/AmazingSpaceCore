@@ -126,7 +126,7 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
 			|| smelting == null
 			|| smelting.type != PRISMARINE_CRYSTALS
 			|| fuel == null
-			|| !hullBlock.contains(fuel.type) // Changed to allow any transform
+			|| fuel.type != STONE // Changed to allow any transform
 		) return
 
         event.isBurning = false
