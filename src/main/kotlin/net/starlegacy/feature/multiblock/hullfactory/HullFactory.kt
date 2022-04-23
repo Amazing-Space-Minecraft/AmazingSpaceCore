@@ -24,7 +24,7 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
 	val DrainAmount = 250
 
     override val signText = createSignText(
-        line1 = "Hull Factory",
+        line1 = "&cHull &fFactory",
         line2 = "&8-------------",
         line3 = null,
         line4 = "Chromatic Inc"
@@ -65,7 +65,7 @@ abstract class HullFactory: PowerStoringMultiblock(), FurnaceMultiblock {
 
             y(+0) {
                 x(-1).anyGlass()
-                x(+0).type(STONECUTTER)
+                x(+0).type(GRINDSTONE)
                 x(+1).anyGlass()
             }
         }
