@@ -1,4 +1,4 @@
-# AmazingSpaceCore
+# Great Oceans Core
 Repository for the Great Oceans minecraft server.
 
 Credit to [MicleBrick](https://github.com/MicleBrick/) for creating Star Legacy and to [PeterCrawley](https://github.com/Peter-Crawley) for creating IonCore.
