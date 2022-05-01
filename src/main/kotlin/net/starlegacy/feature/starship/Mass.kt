@@ -2,7 +2,7 @@ package net.starlegacy.feature.starship
 
 import java.util.EnumMap
 import net.starlegacy.util.MATERIALS
-import net.starlegacy.util.isConcrete
+import net.starlegacy.util.isWool
 import org.bukkit.Material
 
 object Mass {
@@ -11,7 +11,7 @@ object Mass {
 	private val massMap = EnumMap(MATERIALS.filter { it.isBlock }.associateWith {
 		when {
 			it == Material.STICKY_PISTON -> 1000.0
-			it.isConcrete -> 1.0
+			it.isWool -> 1.0
 			else -> it.blastResistance * BLAST_RESIST_MASS_MULTIPLIER
 		}
 	})
