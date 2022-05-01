@@ -216,7 +216,7 @@ class MultiblockShape {
 
 		fun filteredTypes(filter: (Material) -> Boolean) = anyType(MATERIALS.filter(filter))
 
-		fun carbyne() = anyType(CONCRETE_TYPES)
+		fun carbyne() = anyType(WOOL_TYPES)
 		fun stainedTerracotta() = anyType(STAINED_TERRACOTTA_TYPES)
 
 		fun glass() = type(Material.GLASS)
