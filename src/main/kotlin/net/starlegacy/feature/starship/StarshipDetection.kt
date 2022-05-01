@@ -19,7 +19,7 @@ import net.starlegacy.util.blockKeyY
 import net.starlegacy.util.blockKeyZ
 import net.starlegacy.util.chunkKey
 import net.starlegacy.util.getBlockDataSafe
-import net.starlegacy.util.isConcrete
+import net.starlegacy.util.isWool
 import org.bukkit.Material
 import org.bukkit.block.BlockFace
 import org.bukkit.block.data.BlockData
@@ -137,7 +137,7 @@ object StarshipDetection : SLComponent() {
 
 			// Update the various counters
 			when {
-				material.isConcrete -> carbyne++
+				material.isWool -> carbyne++
 				isInventory(material) -> containers++
 				material == Material.STICKY_PISTON -> stickyPistons++
 			}
@@ -197,7 +197,7 @@ object StarshipDetection : SLComponent() {
 		val carbynePercent: Double = carbyne.toDouble() / size.toDouble()
 		if (carbynePercent < 0.3) {
 			throw DetectionFailedException(
-				"All ships require at least 30% carbyne (concrete) blocks in order to fly. Current %: ${carbynePercent * 100}"
+				"All ships require at least 30% wool blocks in order to fly. Current %: ${carbynePercent * 100}"
 			)
 		}
 
