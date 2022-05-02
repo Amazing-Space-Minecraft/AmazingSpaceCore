@@ -21,7 +21,6 @@ import net.starlegacy.feature.starship.active.ActivePlayerStarship
 import net.starlegacy.feature.starship.active.ActiveStarships
 import net.starlegacy.feature.starship.control.StarshipControl
 import net.starlegacy.feature.starship.control.StarshipCruising
-import net.starlegacy.feature.starship.hyperspace.Hyperspace
 import net.starlegacy.feature.starship.subsystem.HyperdriveSubsystem
 import net.starlegacy.feature.starship.subsystem.NavCompSubsystem
 import net.starlegacy.feature.starship.subsystem.weapon.interfaces.AutoWeaponSubsystem
@@ -40,7 +39,7 @@ object MiscStarshipCommands : SLCommand() {
 	@CommandAlias("release")
 	fun onRelease(sender: Player) {
 		DeactivatedPlayerStarships.deactivateAsync(getStarshipPiloting(sender)) {
-			sender msg "&bReleased starship"
+			sender msg "&bReleased ship"
 		}
 	}
 
@@ -81,99 +80,6 @@ object MiscStarshipCommands : SLCommand() {
 
 			BlueprintCommand.loadSchematic(sender, schematic, pilotLoc)
 		}
-	}
-
-	@CommandAlias("jump")
-	fun onJump(sender: Player, xCoordinate: String, zCoordinate: String) {
-		val starship: ActivePlayerStarship = getStarshipPiloting(sender)
-
-		val navComp: NavCompSubsystem = Hyperspace.findNavComp(starship) ?: fail { "Intact nav computer not found!" }
-		val maxRange: Int = (navComp.multiblock.baseRange * starship.data.type.hyperspaceRangeMultiplier).roundToInt()
-
-		val x = parseNumber(xCoordinate, starship.centerOfMass.x)
-		val z = parseNumber(zCoordinate, starship.centerOfMass.z)
-
-		tryJump(starship, x, z, maxRange, sender)
-	}
-
-	private fun parseNumber(string: String, originCoord: Int): Int = when {
-		string == "~" -> originCoord
-
-		string.startsWith("~") -> parseNumber(string.removePrefix("~"), 0) + originCoord
-
-		else -> string.toIntOrNull() ?: fail { "&cInvalid X or Z coordinate! Must be a number." }
-	}
-
-	@CommandAlias("jump")
-	fun onJump(sender: Player, planet: String) {
-		val starship: ActivePlayerStarship = getStarshipPiloting(sender)
-
-		val navComp: NavCompSubsystem = Hyperspace.findNavComp(starship) ?: fail { "Intact nav computer not found!" }
-		val maxRange: Int = (navComp.multiblock.baseRange * starship.data.type.hyperspaceRangeMultiplier).roundToInt()
-
-		val cachedPlanet = Space.getPlanet(planet)
-
-		if (cachedPlanet == null) {
-			sender msg "&cUnknown planet $planet."
-			return
-		}
-
-		if (cachedPlanet.spaceWorld != sender.world) {
-			sender msg "&c$planet is not in this space sector."
-			return
-		}
-
-		val x = cachedPlanet.location.x
-		val z = cachedPlanet.location.z
-
-		tryJump(starship, x, z, maxRange, sender)
-	}
-
-	private fun tryJump(starship: ActivePlayerStarship, x: Int, z: Int, maxRange: Int, sender: Player) {
-		val hyperdrive: HyperdriveSubsystem = Hyperspace.findHyperdrive(starship) ?: fail {
-			"Intact hyperdrive not found"
-		}
-
-		failIf(!hyperdrive.hasFuel()) {
-			"Insufficient chetherite, need ${Hyperspace.HYPERMATTER_AMOUNT} in each hopper"
-		}
-
-		val world = starship.world
-		failIf(!SpaceWorlds.contains(world)) {
-			"Not a space world!"
-		}
-
-		failIf(Hyperspace.getHyperspaceWorld(world) == null) {
-			"Hyperspace is not charted in this sector"
-		}
-
-		failIf(!world.worldBorder.isInside(Location(world, x.toDouble(), 128.0, z.toDouble()))) {
-			"Coords are out of world border."
-		}
-
-		var x1: Int = x
-		var z1: Int = z
-
-		val origin: Vector = starship.centerOfMass.toVector()
-		val distance: Double = distance(origin.x, 0.0, origin.z, x1.toDouble(), 0.0, z1.toDouble())
-
-		if (distance > maxRange) {
-			val (normalizedX, _, normalizedZ) = normalize(x1 - origin.x, 0.0, z1 - origin.z)
-			x1 = (normalizedX * maxRange + origin.x).roundToInt()
-			z1 = (normalizedZ * maxRange + origin.z).roundToInt()
-
-			sender msg "&eWarning: You attempted to jump $distance blocks, " +
-				"but your navigation computer only supports jumping up to $maxRange blocks! " +
-				"Automatically shortening jump. New Coordinates: $x1, $z1"
-		}
-
-		val offset = ln(distance).toInt()
-
-		// don't let it be perfectly accurate
-		x1 += randomInt(-offset, offset)
-		z1 += randomInt(-offset, offset)
-
-		Hyperspace.beginJumpWarmup(starship, hyperdrive, x1, z1, true)
 	}
 
 	@CommandAlias("settarget|starget|st")
