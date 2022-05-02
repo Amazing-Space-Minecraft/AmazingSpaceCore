@@ -53,7 +53,7 @@ import net.starlegacy.command.space.StarCommand
 import net.starlegacy.command.starship.BlueprintCommand
 import net.starlegacy.command.starship.MiscStarshipCommands
 import net.starlegacy.command.starship.StarshipDebugCommand
-import net.starlegacy.command.starship.StarshipInfoCommand
+import net.starlegacy.command.starship.ShipInfoCommand
 import net.starlegacy.database.MongoManager
 import net.starlegacy.database.schema.economy.BazaarItem
 import net.starlegacy.database.schema.economy.CargoCrate
@@ -112,7 +112,7 @@ import net.starlegacy.feature.space.SpaceMechanics
 import net.starlegacy.feature.space.SpaceWorlds
 import net.starlegacy.feature.starship.DeactivatedPlayerStarships
 import net.starlegacy.feature.starship.Hangars
-import net.starlegacy.feature.starship.Interdiction
+//import net.starlegacy.feature.starship.Interdiction
 import net.starlegacy.feature.starship.PilotedStarships
 import net.starlegacy.feature.starship.StarshipComputers
 import net.starlegacy.feature.starship.StarshipDealers
@@ -123,7 +123,7 @@ import net.starlegacy.feature.starship.control.ContactsDisplay
 import net.starlegacy.feature.starship.control.StarshipControl
 import net.starlegacy.feature.starship.control.StarshipCruising
 import net.starlegacy.feature.starship.factory.StarshipFactories
-import net.starlegacy.feature.starship.hyperspace.Hyperspace
+//import net.starlegacy.feature.starship.hyperspace.Hyperspace
 import net.starlegacy.feature.starship.subsystem.shield.StarshipShields
 import net.starlegacy.feature.transport.Extractors
 import net.starlegacy.feature.transport.TransportConfig
@@ -255,7 +255,7 @@ class StarLegacy : JavaPlugin() {
 
 			PlanetSpawns,
 
-			Hyperspace,
+//			Hyperspace,
 			DeactivatedPlayerStarships,
 			ActiveStarships,
 			ActiveStarshipMechanics,
@@ -269,7 +269,7 @@ class StarLegacy : JavaPlugin() {
 			Hangars,
 //			Turrets,
 			StarshipFactories,
-			Interdiction,
+//			Interdiction,
 			StarshipDealers,
 			ShipKillXP,
 			Decomposers
@@ -393,7 +393,7 @@ class StarLegacy : JavaPlugin() {
 			MiscStarshipCommands,
 			BlueprintCommand,
 			StarshipDebugCommand,
-			StarshipInfoCommand,
+			ShipInfoCommand,
 
 			Starships()
 		)
