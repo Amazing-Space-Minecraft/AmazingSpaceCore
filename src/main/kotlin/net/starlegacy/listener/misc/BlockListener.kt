@@ -1,7 +1,6 @@
 package net.starlegacy.listener.misc
 
 import net.starlegacy.feature.misc.CustomItems
-import net.starlegacy.feature.multiblock.misc.MobDefender
 import net.starlegacy.listener.SLEventListener
 import net.starlegacy.util.stripColor
 import org.bukkit.Material
@@ -36,13 +35,6 @@ object BlockListener : SLEventListener() {
 		if (!event.blocks.any { it.type == Material.BROWN_MUSHROOM_BLOCK }) return
 		event.isCancelled = true
 	}
-
-//	// Attempt to remove mob defenders at the location of blocks broken
-//	@EventHandler(priority = EventPriority.MONITOR)
-//	fun onBlockBreakEvent(event: BlockBreakEvent) {
-//		if (event.isCancelled) return
-//		MobDefender.removeDefender(event.block.location)
-//	}
 
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	fun onSignChange(event: SignChangeEvent) {
