@@ -2,24 +2,12 @@ package net.starlegacy.feature.starship.active
 
 import java.util.LinkedList
 import java.util.Locale
-import net.starlegacy.feature.misc.CryoPods
 import net.starlegacy.feature.multiblock.Multiblocks
-import net.starlegacy.feature.multiblock.hyperdrive.HyperdriveMultiblock
-import net.starlegacy.feature.multiblock.misc.CryoPodMultiblock
 import net.starlegacy.feature.multiblock.misc.MagazineMultiblock
-import net.starlegacy.feature.multiblock.navigationcomputer.NavigationComputerMultiblock
-import net.starlegacy.feature.multiblock.particleshield.BoxShieldMultiblock
-import net.starlegacy.feature.multiblock.particleshield.SphereShieldMultiblock
 import net.starlegacy.feature.multiblock.starshipweapon.SignlessStarshipWeaponMultiblock
 import net.starlegacy.feature.multiblock.starshipweapon.StarshipWeaponMultiblock
-import net.starlegacy.feature.starship.subsystem.CryoSubsystem
 import net.starlegacy.feature.starship.subsystem.DirectionalSubsystem
-import net.starlegacy.feature.starship.subsystem.HyperdriveSubsystem
 import net.starlegacy.feature.starship.subsystem.MagazineSubsystem
-import net.starlegacy.feature.starship.subsystem.NavCompSubsystem
-import net.starlegacy.feature.starship.subsystem.reactor.ReactorSubsystem
-import net.starlegacy.feature.starship.subsystem.shield.BoxShieldSubsystem
-import net.starlegacy.feature.starship.subsystem.shield.SphereShieldSubsystem
 import net.starlegacy.feature.starship.subsystem.thruster.ThrusterSubsystem
 import net.starlegacy.feature.starship.subsystem.thruster.ThrusterType
 import net.starlegacy.feature.starship.subsystem.weapon.WeaponSubsystem
@@ -94,26 +82,8 @@ object SubsystemDetector {
 		val multiblock = Multiblocks[sign] ?: return
 
 		when (multiblock) {
-			is SphereShieldMultiblock -> {
-				starship.subsystems += SphereShieldSubsystem(starship, sign, multiblock)
-			}
-			is BoxShieldMultiblock -> {
-				starship.subsystems += BoxShieldSubsystem(starship, sign, multiblock)
-			}
-			is HyperdriveMultiblock -> {
-				starship.subsystems += HyperdriveSubsystem(starship, sign, multiblock)
-			}
-			is NavigationComputerMultiblock -> {
-				starship.subsystems += NavCompSubsystem(starship, sign, multiblock)
-			}
 			is MagazineMultiblock -> {
 				starship.subsystems += MagazineSubsystem(starship, sign, multiblock)
-			}
-			is CryoPodMultiblock -> {
-				val cryoPod = CryoPods[sign]
-				if (cryoPod != null) {
-					starship.subsystems += CryoSubsystem(starship, sign, multiblock, cryoPod)
-				}
 			}
 		}
 	}
@@ -183,13 +153,8 @@ object SubsystemDetector {
 	}
 
 	private fun filterSubsystems(starship: ActivePlayerStarship) {
-		starship.subsystems.filterIsInstanceTo(starship.shields)
 		starship.subsystems.filterIsInstanceTo(starship.weapons)
-		starship.subsystems.filterIsInstanceTo(starship.turrets)
-		starship.subsystems.filterIsInstanceTo(starship.hyperdrives)
-		starship.subsystems.filterIsInstanceTo(starship.navComps)
 		starship.subsystems.filterIsInstanceTo(starship.thrusters)
 		starship.subsystems.filterIsInstanceTo(starship.magazines)
-		starship.subsystems.filterIsInstanceTo(starship.gravityWells)
 	}
 }
