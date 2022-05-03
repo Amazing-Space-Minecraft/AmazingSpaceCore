@@ -28,7 +28,7 @@ import net.starlegacy.command.misc.GlobalGameRuleCommand
 import net.starlegacy.command.misc.ListCommand
 import net.starlegacy.command.misc.PlanetSpawnMenuCommand
 import net.starlegacy.command.misc.PlayerInfoCommand
-import net.starlegacy.command.misc.ShuttleCommand
+//import net.starlegacy.command.misc.ShuttleCommand
 import net.starlegacy.command.misc.TransportDebugCommand
 import net.starlegacy.command.nations.NationCommand
 import net.starlegacy.command.nations.NationRelationCommand
@@ -75,20 +75,20 @@ import net.starlegacy.feature.economy.city.CityNPCs
 import net.starlegacy.feature.economy.city.TradeCities
 import net.starlegacy.feature.economy.collectors.CollectionMissions
 import net.starlegacy.feature.economy.collectors.Collectors
-import net.starlegacy.feature.gas.Gasses
+//import net.starlegacy.feature.gas.Gasses
 import net.starlegacy.feature.gear.Gear
-import net.starlegacy.feature.machine.AreaShields
-import net.starlegacy.feature.machine.BaseShields
-import net.starlegacy.feature.machine.PowerMachines
+//import net.starlegacy.feature.machine.AreaShields
+//import net.starlegacy.feature.machine.BaseShields
+//import net.starlegacy.feature.machine.PowerMachines
 import net.starlegacy.feature.misc.AutoRestart
 import net.starlegacy.feature.misc.CombatNPCs
-import net.starlegacy.feature.misc.CryoPods
+//import net.starlegacy.feature.misc.CryoPods
 import net.starlegacy.feature.misc.CustomItem
 import net.starlegacy.feature.misc.CustomItems
 import net.starlegacy.feature.misc.CustomRecipes
-import net.starlegacy.feature.misc.Decomposers
+//import net.starlegacy.feature.misc.Decomposers
 import net.starlegacy.feature.misc.GameplayTweaks
-import net.starlegacy.feature.misc.PlanetSpawns
+//import net.starlegacy.feature.misc.PlanetSpawns
 import net.starlegacy.feature.misc.Shuttles
 import net.starlegacy.feature.multiblock.Multiblocks
 import net.starlegacy.feature.nations.NationsBalancing
@@ -122,14 +122,14 @@ import net.starlegacy.feature.starship.active.ActiveStarships
 import net.starlegacy.feature.starship.control.ContactsDisplay
 import net.starlegacy.feature.starship.control.StarshipControl
 import net.starlegacy.feature.starship.control.StarshipCruising
-import net.starlegacy.feature.starship.factory.StarshipFactories
+//import net.starlegacy.feature.starship.factory.StarshipFactories
 //import net.starlegacy.feature.starship.hyperspace.Hyperspace
-import net.starlegacy.feature.starship.subsystem.shield.StarshipShields
-import net.starlegacy.feature.transport.Extractors
-import net.starlegacy.feature.transport.TransportConfig
-import net.starlegacy.feature.transport.Wires
-import net.starlegacy.feature.transport.pipe.Pipes
-import net.starlegacy.feature.transport.pipe.filter.Filters
+//import net.starlegacy.feature.starship.subsystem.shield.StarshipShields
+//import net.starlegacy.feature.transport.Extractors
+//import net.starlegacy.feature.transport.TransportConfig
+//import net.starlegacy.feature.transport.Wires
+//import net.starlegacy.feature.transport.pipe.Pipes
+//import net.starlegacy.feature.transport.pipe.filter.Filters
 import net.starlegacy.listener.SLEventListener
 import net.starlegacy.listener.gear.BlasterListener
 import net.starlegacy.listener.gear.DetonatorListener
@@ -195,7 +195,7 @@ class StarLegacy : JavaPlugin() {
 			AutoRestart,
 			Caches,
 			Notify,
-			Shuttles,
+//			Shuttles,
 
 			PlayerXPLevelCache,
 			Levels,
@@ -206,7 +206,7 @@ class StarLegacy : JavaPlugin() {
 
 			CombatNPCs,
 
-			CryoPods,
+//			CryoPods,
 			CustomRecipes,
 			GameplayTweaks,
 
@@ -224,16 +224,16 @@ class StarLegacy : JavaPlugin() {
 			StationSieges,
 
 			Multiblocks,
-			PowerMachines,
-			AreaShields,
-			BaseShields,
-			Gasses,
+//			PowerMachines,
+//			AreaShields,
+//			BaseShields,
+//			Gasses,
 
-			TransportConfig.Companion,
-			Extractors,
-			Pipes,
-			Filters,
-			Wires,
+//			TransportConfig.Companion,
+//			Extractors,
+//			Pipes,
+//			Filters,
+//			Wires,
 
 			Gear,
 
@@ -253,7 +253,7 @@ class StarLegacy : JavaPlugin() {
 			Bazaars,
 			Merchants,
 
-			PlanetSpawns,
+//			PlanetSpawns,
 
 //			Hyperspace,
 			DeactivatedPlayerStarships,
@@ -263,7 +263,7 @@ class StarLegacy : JavaPlugin() {
 			StarshipDetection,
 			StarshipComputers,
 			StarshipControl,
-			StarshipShields,
+//			StarshipShields,
 			StarshipCruising,
 			ContactsDisplay,
 			Hangars,
@@ -271,8 +271,8 @@ class StarLegacy : JavaPlugin() {
 			StarshipFactories,
 //			Interdiction,
 			StarshipDealers,
-			ShipKillXP,
-			Decomposers
+			ShipKillXP
+//			Decomposers
 		)
 
 	// put the get() so the classes aren't initialized right away
@@ -285,7 +285,7 @@ class StarLegacy : JavaPlugin() {
 			ProtectionListener,
 
 			BlockListener,
-			EntityListener,
+//			EntityListener,
 			FurnaceListener,
 			InteractListener,
 			InventoryListener,
@@ -488,8 +488,8 @@ class StarLegacy : JavaPlugin() {
 			"cities" to { _ -> TradeCities.getAll().map { it.displayName } },
 			"collecteditems" to { _ -> CollectedItem.all().map { "${EcoStations[it.station].name}.${it.itemString}" } },
 			"ecostations" to { _ -> EcoStations.getAll().map { it.name } },
-			"shuttles" to { _ -> Shuttle.all().map { it.name } },
-			"shuttleSchematics" to { _ -> Shuttles.getAllSchematics() },
+//			"shuttles" to { _ -> Shuttle.all().map { it.name } },
+//			"shuttleSchematics" to { _ -> Shuttles.getAllSchematics() },
 			"bazaarItemStrings" to { c ->
 				val player = c.player ?: throw InvalidCommandArgument("Players only")
 				val slPlayerId = player.slPlayerId
