@@ -20,16 +20,11 @@ import net.starlegacy.feature.progression.ShipKillXP
 import net.starlegacy.feature.space.CachedPlanet
 import net.starlegacy.feature.starship.StarshipType
 import net.starlegacy.feature.starship.movement.StarshipMovement
-import net.starlegacy.feature.starship.subsystem.GravityWellSubsystem
-import net.starlegacy.feature.starship.subsystem.HyperdriveSubsystem
 import net.starlegacy.feature.starship.subsystem.MagazineSubsystem
-import net.starlegacy.feature.starship.subsystem.NavCompSubsystem
 import net.starlegacy.feature.starship.subsystem.StarshipSubsystem
-import net.starlegacy.feature.starship.subsystem.reactor.ReactorSubsystem
 import net.starlegacy.feature.starship.subsystem.shield.ShieldSubsystem
 import net.starlegacy.feature.starship.subsystem.thruster.ThrustData
 import net.starlegacy.feature.starship.subsystem.thruster.ThrusterSubsystem
-import net.starlegacy.feature.starship.subsystem.weapon.TurretWeaponSubsystem
 import net.starlegacy.feature.starship.subsystem.weapon.WeaponSubsystem
 import net.starlegacy.util.CARDINAL_BLOCK_FACES
 import net.starlegacy.util.Tasks
@@ -76,47 +71,15 @@ abstract class ActiveStarship(
 
 	val subsystems = LinkedList<StarshipSubsystem>()
 	lateinit var reactor: ReactorSubsystem
-	val shields = LinkedList<ShieldSubsystem>()
 	val weapons = LinkedList<WeaponSubsystem>()
-	val turrets = LinkedList<TurretWeaponSubsystem>()
-	val hyperdrives = LinkedList<HyperdriveSubsystem>()
-	val navComps = LinkedList<NavCompSubsystem>()
 	val thrusters = LinkedList<ThrusterSubsystem>()
 	val magazines = LinkedList<MagazineSubsystem>()
-	val gravityWells = LinkedList<GravityWellSubsystem>()
-
 	val weaponSets: HashMultimap<String, WeaponSubsystem> = HashMultimap.create()
 	val weaponSetSelections: HashBiMap<UUID, String> = HashBiMap.create()
-	val autoTurretTargets = mutableMapOf<String, UUID>()
-
-	val shieldEfficiency: Double
-		get() = (shields.size.d().pow(0.9) / (blockCount / 500.0).coerceAtLeast(1.0).pow(0.7))
-			.coerceAtMost(1.0)
 
 	val thrusterMap = mutableMapOf<BlockFace, ThrustData>()
 
 	var lastTick = System.nanoTime()
-
-	var isInterdicting = false
-		private set
-
-	fun setIsInterdicting(value: Boolean) {
-		Tasks.checkMainThread()
-		isInterdicting = value
-
-		gravityWells
-			.filter { it.isIntact() }
-			.map { it.pos.toLocation(world).block.state }
-			.filterIsInstance<Sign>()
-			.forEach { GravityWellMultiblock.setEnabled(it, value) }
-
-		if (!value) {
-			sendMessage("&eGravity well disabled")
-			return
-		}
-
-		sendMessage("&6Gravity well enabled")
-	}
 
 	abstract val interdictionRange: Int
 
