@@ -13,9 +13,6 @@ import net.starlegacy.feature.starship.event.StarshipPilotEvent
 import net.starlegacy.feature.starship.event.StarshipPilotedEvent
 import net.starlegacy.feature.starship.event.StarshipUnpilotEvent
 import net.starlegacy.feature.starship.event.StarshipUnpilotedEvent
-import net.starlegacy.feature.starship.subsystem.shield.ShieldSubsystem
-import net.starlegacy.feature.starship.subsystem.shield.StarshipShields
-import net.starlegacy.feature.transport.Extractors
 import net.starlegacy.redis
 import net.starlegacy.util.Tasks
 import net.starlegacy.util.Vec3i
@@ -52,10 +49,7 @@ object PilotedStarships : SLComponent() {
 		map[player] = starship
 		starship.pilot = player
 		setupPassengers(starship)
-		setupShieldDisplayIndicators(starship)
-		StarshipShields.updateShieldBars(starship)
 		saveLoadshipData(starship, player)
-		removeExtractors(starship)
 		StarshipPilotedEvent(starship, player).callEvent()
 	}
 
@@ -76,17 +70,6 @@ object PilotedStarships : SLComponent() {
 		}
 	}
 
-	private fun setupShieldDisplayIndicators(starship: ActivePlayerStarship) {
-		starship.shields.map(ShieldSubsystem::name).distinct().associateWithTo(starship.shieldBars) { name: String ->
-			// create the actual boss bar
-			val bar: BossBar = Bukkit.createBossBar(name, BarColor.GREEN, BarStyle.SEGMENTED_10)
-			// add all passengers
-			starship.onlinePassengers.forEach(bar::addPlayer)
-			starship.shieldBars[name] = bar
-			return@associateWithTo bar
-		}
-	}
-
 	private fun saveLoadshipData(starship: ActivePlayerStarship, player: Player) {
 		val schematic = StarshipSchematic.createSchematic(starship)
 
@@ -95,14 +78,6 @@ object PilotedStarships : SLComponent() {
 		Tasks.async {
 			redis {
 				set(key, Blueprint.createData(schematic))
-			}
-		}
-	}
-
-	private fun removeExtractors(starship: ActivePlayerStarship) {
-		starship.iterateBlocks { x, y, z ->
-			if (starship.world.getBlockAt(x, y, z).type == Material.CRAFTING_TABLE) {
-				Extractors.remove(starship.world, Vec3i(x, y, z))
 			}
 		}
 	}
@@ -119,12 +94,6 @@ object PilotedStarships : SLComponent() {
 		starship.clearPassengers()
 		starship.shieldBars.values.forEach { it.removeAll() }
 		starship.shieldBars.clear()
-
-		starship.iterateBlocks { x, y, z ->
-			if (starship.world.getBlockAt(x, y, z).type == Material.CRAFTING_TABLE) {
-				Extractors.add(starship.world, Vec3i(x, y, z))
-			}
-		}
 
 		StarshipUnpilotedEvent(starship, player).callEvent()
 	}
