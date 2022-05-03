@@ -21,7 +21,6 @@ import net.starlegacy.feature.starship.PilotedStarships
 import net.starlegacy.feature.starship.active.ActivePlayerStarship
 import net.starlegacy.feature.starship.active.ActiveStarship
 import net.starlegacy.feature.starship.active.ActiveStarships
-import net.starlegacy.feature.starship.hyperspace.Hyperspace
 import net.starlegacy.feature.starship.movement.StarshipTeleportation
 import net.starlegacy.feature.starship.movement.TranslateMovement
 import net.starlegacy.feature.starship.subsystem.weapon.StarshipWeapons
@@ -123,11 +122,11 @@ object StarshipControl : SLComponent() {
 		}
 	}
 
-	private fun processDirectControl(starship: ActivePlayerStarship) {
-		if (starship.isInterdicting || Hyperspace.isWarmingUp(starship) || Hyperspace.isMoving(starship)) {
-			starship.setDirectControlEnabled(false)
-			return
-		}
+//	private fun processDirectControl(starship: ActivePlayerStarship) {
+//		if (starship.isInterdicting || Hyperspace.isWarmingUp(starship) || Hyperspace.isMoving(starship)) {
+//			starship.setDirectControlEnabled(false)
+//			return
+//		}
 
 		val pilot = starship.pilot ?: return
 		val ping = getPing(pilot)
