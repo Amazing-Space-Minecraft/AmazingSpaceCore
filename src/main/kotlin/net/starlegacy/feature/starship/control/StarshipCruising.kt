@@ -10,7 +10,6 @@ import net.starlegacy.feature.starship.active.ActivePlayerStarship
 import net.starlegacy.feature.starship.active.ActiveStarships
 import net.starlegacy.feature.starship.event.StarshipStartCruisingEvent
 import net.starlegacy.feature.starship.event.StarshipStopCruisingEvent
-import net.starlegacy.feature.starship.hyperspace.Hyperspace
 import net.starlegacy.feature.starship.movement.TranslateMovement
 import net.starlegacy.util.Tasks
 import net.starlegacy.util.action
@@ -131,8 +130,8 @@ object StarshipCruising : SLComponent() {
 			return true
 		}
 
-		if (Hyperspace.isWarmingUp(starship)) {
-			return true
+//		if (Hyperspace.isWarmingUp(starship)) {
+//			return true
 		}
 
 		return false
