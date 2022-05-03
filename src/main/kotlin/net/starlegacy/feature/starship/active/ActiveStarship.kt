@@ -15,14 +15,12 @@ import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
-import net.starlegacy.feature.multiblock.gravitywell.GravityWellMultiblock
 import net.starlegacy.feature.progression.ShipKillXP
 import net.starlegacy.feature.space.CachedPlanet
 import net.starlegacy.feature.starship.StarshipType
 import net.starlegacy.feature.starship.movement.StarshipMovement
 import net.starlegacy.feature.starship.subsystem.MagazineSubsystem
 import net.starlegacy.feature.starship.subsystem.StarshipSubsystem
-import net.starlegacy.feature.starship.subsystem.shield.ShieldSubsystem
 import net.starlegacy.feature.starship.subsystem.thruster.ThrustData
 import net.starlegacy.feature.starship.subsystem.thruster.ThrusterSubsystem
 import net.starlegacy.feature.starship.subsystem.weapon.WeaponSubsystem
@@ -70,7 +68,6 @@ abstract class ActiveStarship(
 	val blockCount: Int = blocks.size
 
 	val subsystems = LinkedList<StarshipSubsystem>()
-	lateinit var reactor: ReactorSubsystem
 	val weapons = LinkedList<WeaponSubsystem>()
 	val thrusters = LinkedList<ThrusterSubsystem>()
 	val magazines = LinkedList<MagazineSubsystem>()
