@@ -1,4 +1,4 @@
-package net.starlegacy.command.ship
+package net.starlegacy.command.starship
 
 import co.aikar.commands.annotation.CommandAlias
 import kotlin.math.round
