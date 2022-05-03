@@ -37,12 +37,12 @@ object BlockListener : SLEventListener() {
 		event.isCancelled = true
 	}
 
-	// Attempt to remove mob defenders at the location of blocks broken
-	@EventHandler(priority = EventPriority.MONITOR)
-	fun onBlockBreakEvent(event: BlockBreakEvent) {
-		if (event.isCancelled) return
-		MobDefender.removeDefender(event.block.location)
-	}
+//	// Attempt to remove mob defenders at the location of blocks broken
+//	@EventHandler(priority = EventPriority.MONITOR)
+//	fun onBlockBreakEvent(event: BlockBreakEvent) {
+//		if (event.isCancelled) return
+//		MobDefender.removeDefender(event.block.location)
+//	}
 
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	fun onSignChange(event: SignChangeEvent) {
