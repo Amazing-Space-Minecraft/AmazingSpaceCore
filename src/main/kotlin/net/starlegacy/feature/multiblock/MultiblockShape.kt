@@ -6,9 +6,6 @@ import kotlin.collections.component2
 import kotlin.collections.set
 import net.starlegacy.feature.misc.CustomBlock
 import net.starlegacy.feature.misc.CustomBlocks
-import net.starlegacy.feature.transport.Extractors
-import net.starlegacy.feature.transport.Wires
-import net.starlegacy.feature.transport.pipe.Pipes
 import net.starlegacy.util.CARDINAL_BLOCK_FACES
 import net.starlegacy.util.CONCRETE_TYPES
 import net.starlegacy.util.MATERIALS
@@ -266,17 +263,11 @@ class MultiblockShape {
 			Material.WAXED_WEATHERED_CUT_COPPER,
 			Material.WAXED_OXIDIZED_CUT_COPPER,
 		)
-		fun titaniumBlock() = customBlock(CustomBlocks.MINERAL_TITANIUM.block)
-		fun aluminumBlock() = customBlock(CustomBlocks.MINERAL_ALUMINUM.block)
-		fun chetheriteBlock() = customBlock(CustomBlocks.MINERAL_CHETHERITE.block)
-		fun wireInputComputer() = type(Wires.INPUT_COMPUTER_BLOCK)
 
 		fun redstoneLamp() = filteredTypes { it.isRedstoneLamp }
 
 		fun daylightSensor() = filteredTypes { it.isDaylightSensor }
 		fun craftingTable() = type(Material.CRAFTING_TABLE)
-
-		fun extractor() = type(Extractors.EXTRACTOR_BLOCK)
 
 		fun glowstone() = type(Material.GLOWSTONE)
 
@@ -287,8 +278,6 @@ class MultiblockShape {
 
 		fun anyDoor() = filteredTypes { it.isDoor }
 		fun anyButton() = filteredTypes { it.isButton }
-
-		fun anyPipedInventory() = filteredTypes { Pipes.isPipedInventory(it) }
 
 		fun pistonBase() = type(Material.PISTON)
 		fun pistonHead() = type(Material.PISTON_HEAD)
