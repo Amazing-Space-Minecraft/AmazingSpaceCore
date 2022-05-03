@@ -21,9 +21,6 @@ import net.starlegacy.feature.starship.active.ActivePlayerStarship
 import net.starlegacy.feature.starship.active.ActiveStarships
 import net.starlegacy.feature.starship.control.StarshipControl
 import net.starlegacy.feature.starship.control.StarshipCruising
-import net.starlegacy.feature.starship.subsystem.HyperdriveSubsystem
-import net.starlegacy.feature.starship.subsystem.NavCompSubsystem
-import net.starlegacy.feature.starship.subsystem.weapon.interfaces.AutoWeaponSubsystem
 import net.starlegacy.redis
 import net.starlegacy.util.Vec3i
 import net.starlegacy.util.action
@@ -88,18 +85,6 @@ object MiscStarshipCommands : SLCommand() {
 		val weaponSet = set.lowercase(Locale.getDefault())
 		failIf(!starship.weaponSets.containsKey(weaponSet)) {
 			"No such weapon set $weaponSet"
-		}
-		failIf(!starship.weaponSets[weaponSet].any { it is AutoWeaponSubsystem }) {
-			"No auto turrets on weapon set $weaponSet"
-		}
-		if (player == null) {
-			failIf(starship.autoTurretTargets.remove(weaponSet) == null) {
-				"No target set for $weaponSet"
-			}
-			sender msg "&7Unset target of &b$weaponSet"
-		} else {
-			starship.autoTurretTargets[weaponSet] = player.getPlayer().uniqueId
-			sender msg "&7Set target of &b$weaponSet&7 to ${player.getPlayer().name}"
 		}
 	}
 
