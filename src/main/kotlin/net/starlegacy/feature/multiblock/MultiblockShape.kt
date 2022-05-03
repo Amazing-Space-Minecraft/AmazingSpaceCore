@@ -6,7 +6,6 @@ import kotlin.collections.component2
 import kotlin.collections.set
 import net.starlegacy.feature.misc.CustomBlock
 import net.starlegacy.feature.misc.CustomBlocks
-import net.starlegacy.feature.multiblock.areashield.AreaShield10.buildStructure
 import net.starlegacy.feature.transport.Extractors
 import net.starlegacy.feature.transport.Wires
 import net.starlegacy.feature.transport.pipe.Pipes
@@ -216,7 +215,7 @@ class MultiblockShape {
 
 		fun filteredTypes(filter: (Material) -> Boolean) = anyType(MATERIALS.filter(filter))
 
-		fun carbyne() = anyType(WOOL_TYPES)
+		fun carbyne() = anyType(CONCRETE_TYPES)
 		fun stainedTerracotta() = anyType(STAINED_TERRACOTTA_TYPES)
 
 		fun glass() = type(Material.GLASS)
