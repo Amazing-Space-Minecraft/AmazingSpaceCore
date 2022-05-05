@@ -21,7 +21,6 @@ import net.starlegacy.database.slPlayerId
 import net.starlegacy.feature.economy.city.TradeCities
 import net.starlegacy.feature.economy.city.TradeCityData
 import net.starlegacy.feature.economy.city.TradeCityType
-import net.starlegacy.feature.misc.CustomItems
 import net.starlegacy.feature.nations.gui.input
 import net.starlegacy.feature.nations.region.Regions
 import net.starlegacy.feature.nations.region.types.RegionTerritory
@@ -58,6 +57,7 @@ import org.bukkit.inventory.InventoryHolder
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BlockStateMeta
 import org.bukkit.util.Vector
+import org.bukkit.Material.GOLD_NUGGET
 
 object ShipmentManager : SLComponent() {
 	private data class Delivery(
@@ -154,12 +154,12 @@ object ShipmentManager : SLComponent() {
 		val destinationTerritory: RegionTerritory = Regions[shipment.to.territoryId]
 		val destinationWorld = destinationTerritory.world
 		val planetId = destinationWorld.lowercase(Locale.getDefault()).replace(" ", "")
-		val planetIcon = CustomItems["planet_icon_$planetId"] ?: CustomItems.DETONATOR
+		val planetIcon = Material.GOLD_NUGGET
 		return guiButton(planetIcon.itemStack(1))
 	}
 
 	private fun openAmountPrompt(player: Player, shipment: UnclaimedShipment) {
-		player.input("What color is the sky?") { _: Player, answer ->
+		player.input("How many cargo crates?") { _: Player, answer ->
 			val amount = answer.toIntOrNull() ?: return@input "Amount must be an integer"
 
 			val min = balancing.generator.minShipmentSize
