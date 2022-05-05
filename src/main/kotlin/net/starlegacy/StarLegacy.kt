@@ -20,16 +20,12 @@ import net.starlegacy.command.economy.CollectedItemCommand
 import net.starlegacy.command.economy.CollectorCommand
 import net.starlegacy.command.economy.EcoStationCommand
 import net.starlegacy.command.economy.TradeDebugCommand
-import net.starlegacy.command.misc.BatteryCommand
 import net.starlegacy.command.misc.CustomItemCommand
 import net.starlegacy.command.misc.DyeCommand
 import net.starlegacy.command.misc.GToggleCommand
 import net.starlegacy.command.misc.GlobalGameRuleCommand
 import net.starlegacy.command.misc.ListCommand
-import net.starlegacy.command.misc.PlanetSpawnMenuCommand
 import net.starlegacy.command.misc.PlayerInfoCommand
-//import net.starlegacy.command.misc.ShuttleCommand
-import net.starlegacy.command.misc.TransportDebugCommand
 import net.starlegacy.command.nations.NationCommand
 import net.starlegacy.command.nations.NationRelationCommand
 import net.starlegacy.command.nations.NationSpaceStationCommand
@@ -75,21 +71,10 @@ import net.starlegacy.feature.economy.city.CityNPCs
 import net.starlegacy.feature.economy.city.TradeCities
 import net.starlegacy.feature.economy.collectors.CollectionMissions
 import net.starlegacy.feature.economy.collectors.Collectors
-//import net.starlegacy.feature.gas.Gasses
-import net.starlegacy.feature.gear.Gear
-//import net.starlegacy.feature.machine.AreaShields
-//import net.starlegacy.feature.machine.BaseShields
-//import net.starlegacy.feature.machine.PowerMachines
 import net.starlegacy.feature.misc.AutoRestart
 import net.starlegacy.feature.misc.CombatNPCs
-//import net.starlegacy.feature.misc.CryoPods
-import net.starlegacy.feature.misc.CustomItem
-import net.starlegacy.feature.misc.CustomItems
 import net.starlegacy.feature.misc.CustomRecipes
-//import net.starlegacy.feature.misc.Decomposers
 import net.starlegacy.feature.misc.GameplayTweaks
-//import net.starlegacy.feature.misc.PlanetSpawns
-import net.starlegacy.feature.misc.Shuttles
 import net.starlegacy.feature.multiblock.Multiblocks
 import net.starlegacy.feature.nations.NationsBalancing
 import net.starlegacy.feature.nations.NationsMap
@@ -108,7 +93,6 @@ import net.starlegacy.feature.space.CachedStar
 import net.starlegacy.feature.space.Orbits
 import net.starlegacy.feature.space.Space
 import net.starlegacy.feature.space.SpaceMap
-import net.starlegacy.feature.space.SpaceMechanics
 import net.starlegacy.feature.space.SpaceWorlds
 import net.starlegacy.feature.starship.DeactivatedPlayerStarships
 import net.starlegacy.feature.starship.Hangars
@@ -122,24 +106,9 @@ import net.starlegacy.feature.starship.active.ActiveStarships
 import net.starlegacy.feature.starship.control.ContactsDisplay
 import net.starlegacy.feature.starship.control.StarshipControl
 import net.starlegacy.feature.starship.control.StarshipCruising
-//import net.starlegacy.feature.starship.factory.StarshipFactories
-//import net.starlegacy.feature.starship.hyperspace.Hyperspace
-//import net.starlegacy.feature.starship.subsystem.shield.StarshipShields
-//import net.starlegacy.feature.transport.Extractors
-//import net.starlegacy.feature.transport.TransportConfig
-//import net.starlegacy.feature.transport.Wires
-//import net.starlegacy.feature.transport.pipe.Pipes
-//import net.starlegacy.feature.transport.pipe.filter.Filters
 import net.starlegacy.listener.SLEventListener
-import net.starlegacy.listener.gear.BlasterListener
-import net.starlegacy.listener.gear.DetonatorListener
-import net.starlegacy.listener.gear.DoubleJumpListener
-import net.starlegacy.listener.gear.PowerArmorListener
-import net.starlegacy.listener.gear.PowerToolListener
-import net.starlegacy.listener.gear.SwordListener
 import net.starlegacy.listener.misc.BlockListener
 import net.starlegacy.listener.misc.ChatListener
-import net.starlegacy.listener.misc.EntityListener
 import net.starlegacy.listener.misc.FurnaceListener
 import net.starlegacy.listener.misc.InteractListener
 import net.starlegacy.listener.misc.InventoryListener
@@ -215,8 +184,6 @@ class StarLegacy : JavaPlugin() {
 			SpaceMap,
 			Orbits,
 
-			SpaceMechanics,
-
 			NationsBalancing,
 			Regions,
 			NationsMap,
@@ -224,18 +191,6 @@ class StarLegacy : JavaPlugin() {
 			StationSieges,
 
 			Multiblocks,
-//			PowerMachines,
-//			AreaShields,
-//			BaseShields,
-//			Gasses,
-
-//			TransportConfig.Companion,
-//			Extractors,
-//			Pipes,
-//			Filters,
-//			Wires,
-
-			Gear,
 
 			TradeCities,
 
@@ -253,9 +208,6 @@ class StarLegacy : JavaPlugin() {
 			Bazaars,
 			Merchants,
 
-//			PlanetSpawns,
-
-//			Hyperspace,
 			DeactivatedPlayerStarships,
 			ActiveStarships,
 			ActiveStarshipMechanics,
@@ -263,16 +215,11 @@ class StarLegacy : JavaPlugin() {
 			StarshipDetection,
 			StarshipComputers,
 			StarshipControl,
-//			StarshipShields,
 			StarshipCruising,
 			ContactsDisplay,
 			Hangars,
-//			Turrets,
-			StarshipFactories,
-//			Interdiction,
 			StarshipDealers,
 			ShipKillXP
-//			Decomposers
 		)
 
 	// put the get() so the classes aren't initialized right away
@@ -288,14 +235,7 @@ class StarLegacy : JavaPlugin() {
 //			EntityListener,
 			FurnaceListener,
 			InteractListener,
-			InventoryListener,
-
-			BlasterListener,
-			DetonatorListener,
-			DoubleJumpListener,
-			PowerArmorListener,
-			PowerToolListener,
-			SwordListener
+			InventoryListener
 		)
 
 	override fun onEnable() {
@@ -348,12 +288,7 @@ class StarLegacy : JavaPlugin() {
 			DyeCommand,
 			GlobalGameRuleCommand,
 
-			BatteryCommand,
-			CustomItemCommand,
 			ListCommand,
-			TransportDebugCommand,
-			PlanetSpawnMenuCommand,
-			ShuttleCommand,
 			BuyXPCommand,
 
 			SettlementCommand,
@@ -406,12 +341,6 @@ class StarLegacy : JavaPlugin() {
 
 		// Add contexts
 		manager.commandContexts.run {
-			registerContext(CustomItem::class.java) { c: BukkitCommandExecutionContext ->
-				val arg = c.popFirstArg()
-				return@registerContext CustomItems[arg]
-					?: throw InvalidCommandArgument("No custom item $arg found!")
-			}
-
 			registerContext(RegionSettlementZone::class.java) { c: BukkitCommandExecutionContext ->
 				val arg = c.popFirstArg() ?: throw InvalidCommandArgument("Zone is required")
 				return@registerContext Regions.getAllOf<RegionSettlementZone>().firstOrNull { it.name == arg }
@@ -444,7 +373,6 @@ class StarLegacy : JavaPlugin() {
 		// Add static tab completions
 		mapOf(
 			"levels" to (0..MAX_LEVEL).joinToString("|"),
-			"customitems" to CustomItems.all().joinToString("|") { it.id },
 			"npctypes" to CityNPC.Type.values().joinToString("|") { it.name }
 		).forEach { manager.commandCompletions.registerStaticCompletion(it.key, it.value) }
 
