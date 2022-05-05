@@ -17,8 +17,6 @@ import net.starlegacy.feature.economy.city.CityNPCs
 import net.starlegacy.feature.economy.city.TradeCities
 import net.starlegacy.feature.economy.city.TradeCityData
 import net.starlegacy.feature.economy.city.TradeCityType
-import net.starlegacy.feature.misc.CustomItem
-import net.starlegacy.feature.misc.CustomItems
 import net.starlegacy.feature.nations.gui.playerClicker
 import net.starlegacy.feature.nations.region.Regions
 import net.starlegacy.feature.nations.region.types.RegionTerritory
@@ -35,6 +33,7 @@ import org.bukkit.DyeColor
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import org.bukkit.Material.GOLD_NUGGET
 import org.litote.kmongo.eq
 
 @CommandAlias("bazaar")
@@ -229,8 +228,8 @@ object BazaarCommand : SLCommand() {
 				val territoryId = city.territoryId
 				val territory: RegionTerritory = Regions[territoryId]
 
-				// attempt to get the planet icon, just use a detonator if unavailable
-				val item: CustomItem = Space.getPlanet(territory.world)?.planetIcon ?: CustomItems.DETONATOR
+				// attempt to get the planet icon, just use a gold nugget if unavailable
+				val item: Material.GOLD_NUGGET
 
 				return@map guiButton(item.itemStack(1)) {
 					val clicker: Player = playerClicker
