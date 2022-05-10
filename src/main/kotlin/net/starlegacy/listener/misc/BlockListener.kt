@@ -1,6 +1,5 @@
 package net.starlegacy.listener.misc
 
-import net.starlegacy.feature.misc.CustomItems
 import net.starlegacy.listener.SLEventListener
 import net.starlegacy.util.stripColor
 import org.bukkit.Material
