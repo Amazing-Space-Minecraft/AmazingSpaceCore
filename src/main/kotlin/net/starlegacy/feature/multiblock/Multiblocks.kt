@@ -3,10 +3,6 @@ package net.starlegacy.feature.multiblock
 import co.aikar.timings.Timing
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.starlegacy.SLComponent
-import net.starlegacy.feature.multiblock.misc.MagazineMultiblock
-import net.starlegacy.feature.multiblock.starshipweapon.cannon.LaserCannonStarshipWeaponMultiblock
-import net.starlegacy.feature.multiblock.starshipweapon.cannon.PlasmaCannonStarshipWeaponMultiblock
-import net.starlegacy.feature.multiblock.starshipweapon.cannon.PulseCannonStarshipWeaponMultiblock
 import net.starlegacy.util.msg
 import net.starlegacy.util.time
 import net.starlegacy.util.timing
@@ -20,16 +16,6 @@ import org.bukkit.inventory.EquipmentSlot
 
 object Multiblocks : SLComponent() {
 	private lateinit var multiblocks: List<Multiblock>
-
-	private fun initMultiblocks() {
-		multiblocks = listOf(
-			MagazineMultiblock,
-
-			LaserCannonStarshipWeaponMultiblock,
-			PlasmaCannonStarshipWeaponMultiblock,
-			PulseCannonStarshipWeaponMultiblock,
-		)
-	}
 
 	private val multiblockCache: MutableMap<Location, Multiblock> = Object2ObjectOpenHashMap()
 
