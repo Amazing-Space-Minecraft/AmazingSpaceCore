@@ -132,7 +132,7 @@ object StarshipCruising : SLComponent() {
 
 //		if (Hyperspace.isWarmingUp(starship)) {
 //			return true
-		}
+//		}
 
 		return false
 	}
