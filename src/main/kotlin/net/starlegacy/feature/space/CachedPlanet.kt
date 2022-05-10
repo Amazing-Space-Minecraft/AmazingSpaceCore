@@ -3,8 +3,6 @@ package net.starlegacy.feature.space
 import java.util.Locale
 import net.starlegacy.database.Oid
 import net.starlegacy.database.schema.space.Planet
-import net.starlegacy.feature.misc.CustomItem
-import net.starlegacy.feature.misc.CustomItems
 import net.starlegacy.util.NMSBlockState
 import net.starlegacy.util.NMSBlocks
 import net.starlegacy.util.Vec3i
@@ -56,8 +54,7 @@ class CachedPlanet(
 	var orbitDistance: Int = orbitDistance; private set
 	var orbitProgress: Double = orbitProgress; private set
 
-	val planetIcon: CustomItem = CustomItems["planet_icon_${name.lowercase(Locale.getDefault()).replace(" ", "")}"]
-		?: CustomItems.DETONATOR
+	val planetIcon: Material.GOLD_NUGGET
 
 	init {
 		require(size > 0 && size <= 1)
