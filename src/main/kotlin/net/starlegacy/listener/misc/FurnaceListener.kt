@@ -1,7 +1,5 @@
 package net.starlegacy.listener.misc
 
-import net.starlegacy.feature.misc.CustomBlockItem
-import net.starlegacy.feature.misc.CustomItems
 import net.starlegacy.feature.multiblock.FurnaceMultiblock
 import net.starlegacy.feature.multiblock.Multiblocks
 import net.starlegacy.listener.SLEventListener
@@ -53,38 +51,6 @@ object FurnaceListener : SLEventListener() {
 			timings.getValue(multiblock).time {
 				multiblock.onFurnaceTick(event, state, sign)
 			}
-		}
-	}
-
-	// something with custom ores
-	@EventHandler
-	fun onFurnaceSmeltCustomOre(event: FurnaceSmeltEvent) {
-		val source: ItemStack = event.source
-		val item = CustomItems[source]
-
-		if (item is CustomBlockItem && item.id.endsWith("_ore")) {
-			event.result = CustomItems[item.id.replace("_ore", "")]!!.itemStack(1)
-			return
-		}
-
-		val furnace = event.block.getState(false) as Furnace
-		val directional = furnace.blockData as Directional
-		val signBlock = furnace.block.getRelative(directional.facing)
-
-		if (!signBlock.type.isWallSign) {
-			return
-		}
-
-		val sign = signBlock.getState(false) as Sign
-		val multiblock = Multiblocks[sign, false]
-
-		if (multiblock != null && !multiblock.name.contains("furnace")) {
-			event.isCancelled = true
-		}
-
-		val result: ItemStack = event.result
-		if (result.type == Material.DEAD_BUSH || result.type == Material.DANDELION || CustomItems[source] != null) {
-			event.isCancelled = true
 		}
 	}
 }
