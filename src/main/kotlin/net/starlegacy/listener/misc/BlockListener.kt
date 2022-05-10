@@ -19,23 +19,6 @@ object BlockListener : SLEventListener() {
 		event.isCancelled = true
 	}
 
-	// Don't allow breaking blocks with custom items
-	@EventHandler
-	fun onBlockBreakEventA(event: BlockBreakEvent) {
-		val item = event.player.inventory.itemInMainHand
-		val customItem = CustomItems[item]
-		if (customItem != null && !customItem.id.startsWith("power_tool_")) {
-			event.isCancelled = true
-		}
-	}
-
-	// Prevent huge mushroom trees from growing as large mushroom blocks are used as custom ores
-	@EventHandler
-	fun onStructureGrowEvent(event: StructureGrowEvent) {
-		if (!event.blocks.any { it.type == Material.BROWN_MUSHROOM_BLOCK }) return
-		event.isCancelled = true
-	}
-
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	fun onSignChange(event: SignChangeEvent) {
 		for (i in 0 until 4) {
