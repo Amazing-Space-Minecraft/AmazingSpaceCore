@@ -89,7 +89,6 @@ object ActiveStarshipFactory {
 
 	private fun initSubsystems(starship: ActivePlayerStarship) {
 		SubsystemDetector.detectSubsystems(starship)
-		prepareShields(starship)
 		starship.generateThrusterMap()
 		determineForward(starship)
 		fixForwardOnlySubsystems(starship) // this can't be done till after forward is found
@@ -100,28 +99,6 @@ object ActiveStarshipFactory {
 			.maxByOrNull { it.value.maxSpeed }
 			?.key
 			?: starship.forward
-	}
-
-	private fun prepareShields(starship: ActivePlayerStarship) {
-		limitReinforcedShields(starship)
-	}
-
-	private fun limitReinforcedShields(starship: ActivePlayerStarship) {
-		val reinforcedCount = starship.shields.count { it.isReinforcementEnabled }
-		val maxReinforced = min(3, starship.blockCount / 7500)
-
-		if (reinforcedCount <= maxReinforced) {
-			return
-		}
-
-		for (shield in starship.shields) {
-			shield.isReinforcementEnabled = false
-		}
-
-		// do it after passengers are detected
-		Tasks.syncDelay(1L) {
-			starship.sendMessage("&cEnhanced shields enhancements deactivated, found $reinforcedCount but ship only sustains $maxReinforced")
-		}
 	}
 
 	private fun fixForwardOnlySubsystems(starship: ActivePlayerStarship) {
