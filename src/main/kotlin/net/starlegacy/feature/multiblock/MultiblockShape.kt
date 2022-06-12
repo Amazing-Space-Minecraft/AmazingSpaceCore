@@ -4,8 +4,6 @@ import java.util.EnumSet
 import kotlin.collections.component1
 import kotlin.collections.component2
 import kotlin.collections.set
-import net.starlegacy.feature.misc.CustomBlock
-import net.starlegacy.feature.misc.CustomBlocks
 import net.starlegacy.util.CARDINAL_BLOCK_FACES
 import net.starlegacy.util.CONCRETE_TYPES
 import net.starlegacy.util.MATERIALS
@@ -202,10 +200,6 @@ class MultiblockShape {
 		fun anyType(vararg types: Material) {
 			val typeSet = EnumSet.copyOf(types.toList())
 			complete { block, _ -> typeSet.contains(block.getTypeSafe()) }
-		}
-
-		fun customBlock(customBlock: CustomBlock) {
-			complete { block, _ -> CustomBlocks[block] === customBlock }
 		}
 
 		fun anyType(types: Iterable<Material>) = anyType(*types.toList().toTypedArray())
